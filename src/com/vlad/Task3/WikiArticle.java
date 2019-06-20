@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class WikiArticle implements Cloneable {
     StringBuilder state;
-    HashMap<String, WikiArticle> articleHashMap = new HashMap<>();
 
     public WikiArticle(String header, String text) {
         int version=0;
@@ -27,8 +26,8 @@ public class WikiArticle implements Cloneable {
         state.append(" + " + text);
     }
 
-    public void printSt() {
-        System.out.println("\t" + state);
+    public StringBuilder getState() {
+        return state;
     }
 
 
