@@ -13,7 +13,7 @@ public class Main {
         Magazine magazine2 = new Magazine("bob", "About Animals");
 
 
-        postOffice.addObserver(lol);
+        postOffice.addObserver(bob);
         postOffice.addObserver(jon);
 
         postOffice.addMagazine(magazine1, magazine2);
