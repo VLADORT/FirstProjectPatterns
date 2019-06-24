@@ -78,7 +78,7 @@ public class Expression {
         Stack<Calculator> stackCalc = new Stack<>();
         StringTokenizer tokenizer = new StringTokenizer(s);
         while (tokenizer.hasMoreTokens()) {
-            try {
+
                 temp = tokenizer.nextToken().trim();
                 if (temp.length() == 1 && isOperator(temp.charAt(0))) {
                     if (stackCalc.size() < 2) {
@@ -109,10 +109,7 @@ public class Expression {
                     a = new Value(Double.parseDouble(temp));
                     stackCalc.push(a);
                 }
-            } catch (Exception e) {
-                System.out.println("Wrong symbol in expression");
-                System.exit(1);
-            }
+
         }
 
         if (stackCalc.size() > 1) {
