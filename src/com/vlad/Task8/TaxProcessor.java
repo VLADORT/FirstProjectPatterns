@@ -1,6 +1,6 @@
 package com.vlad.Task8;
 
-public class TaxProcessor extends Processor {
+public class TaxProcessor implements Processor {
 
     private int sumOfTax;
 
@@ -8,16 +8,21 @@ public class TaxProcessor extends Processor {
     private final int subsidyTax=12;
     private final int stateTransferTax=7;
 
-    private Transaction transaction;
-
-    public TaxProcessor(Transaction transaction) {
-        super(transaction);
+    public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
     }
 
+    private Transaction transaction;
+    private Processor next;
+    public void setNext(Processor next) {
+        this.next = next;
+    }
+
+
 
     @Override
-    public void process() {
+    public void process(Transaction transaction) {
+        setTransaction(transaction);
         transaction.printType();
         switch (transaction.getType()) {
             case "Subsidy transaction":
@@ -37,6 +42,11 @@ public class TaxProcessor extends Processor {
         transaction.setValue(transaction.getValue()-sumOfTax);
 
         System.out.println("Transaction is Taxed");
+        System.out.println("Value: " + transaction.getValue());
+
+        if (next != null) {
+            next.process(this.transaction);
+        }
 
     }
 }

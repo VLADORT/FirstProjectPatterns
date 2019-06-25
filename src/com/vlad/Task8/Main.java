@@ -7,24 +7,24 @@ public class Main {
         Transaction transaction1 = new SubsidyTransaction(80);
 
 
-        Processor processor1 = new FixingProcessor(transaction);
-        Processor processor2 = new ControlProcessor(transaction);
-        Processor processor3 = new TaxProcessor(transaction);
+        FixingProcessor processor1 = new FixingProcessor();
+        ControlProcessor processor2 = new ControlProcessor();
+        TaxProcessor processor3 = new TaxProcessor();
 
 
         processor1.setNext(processor2);
         processor2.setNext(processor3);
-        processor1.processValue();
+        processor1.process(transaction);
 
-        processor1 = new FixingProcessor(transaction1);
-        processor2 = new ControlProcessor(transaction1);
-        processor3 = new TaxProcessor(transaction1);
+        processor1 = new FixingProcessor();
+        processor2 = new ControlProcessor();
+        processor3 = new TaxProcessor();
 
-        processor1.processValue();
+        processor1.process(transaction1);
 
         processor1.setNext(processor2);
         processor2.setNext(processor3);
-        processor1.processValue();
+        processor1.process(transaction1);
 
 
     }
