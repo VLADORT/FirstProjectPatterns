@@ -5,4 +5,6 @@ public interface  Processor {
 
      void process(Transaction transaction);
 
+     void  setNext(Processor processor);
+
 }
