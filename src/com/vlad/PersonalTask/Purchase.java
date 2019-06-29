@@ -8,6 +8,11 @@ public  class  Purchase  {
     private Tray processingTray = new Tray();
     private int amount;
 
+    @Override
+    public String toString() {
+        return "Good: "+good.getName()+", Sum of purchase: "+requiredMoney+", amount: "+amount;
+    }
+
     public int getAmount() {
         return amount;
     }

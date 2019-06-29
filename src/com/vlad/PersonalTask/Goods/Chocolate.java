@@ -4,6 +4,7 @@ import com.vlad.PersonalTask.Good;
 
 public class Chocolate implements Good {
 
+    public boolean empty;
     private int amount;
     private double price;
     private String name = "chocolate";
@@ -40,7 +41,16 @@ public class Chocolate implements Good {
 
     @Override
     public void update(int amount) {
-        this.amount -= amount;
+        if (this.amount - amount < 0) {
+            System.out.println("There are less elements in stock, choose appropriate value");
+            System.exit(1);
+
+        } else {
+            this.amount -= amount;
+            if (this.amount == 0) {
+                empty = true;
+            }
+        }
 
     }
 }

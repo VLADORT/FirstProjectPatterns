@@ -4,14 +4,13 @@ import com.vlad.PersonalTask.Goods.Bread;
 import com.vlad.PersonalTask.Goods.Chocolate;
 import com.vlad.PersonalTask.Goods.Garlic;
 
-public class Tray {
+public class Tray implements  Observer {
 
-    private boolean isInStock;
+     boolean isNotInStock;
 
     private Bread bread = new Bread(5,15.30);
     private Chocolate chocolate= new Chocolate(5,30.99);
-
-    private Garlic garlic = new Garlic(5,89.50);
+    private Garlic garlic = new Garlic(5,8.50);
 
     public Bread getBread() {
         return bread;
@@ -40,7 +39,18 @@ public class Tray {
 
         return good;
     }
-    
 
 
+    @Override
+    public void Notify() {
+        this.isNotInStock = bread.empty||garlic.empty||chocolate.empty;
+        if (bread.empty)
+            System.out.println("Bread is absent");
+        if (garlic.empty)
+            System.out.println("Garlic is absent");
+        if (chocolate.empty)
+            System.out.println("Chocolate is absent");
+
+
+    }
 }

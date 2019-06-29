@@ -8,12 +8,13 @@ public class Automate {
 
     private double sum = 0;
 
+    private ArrayList<ArrayList<Purchase>> report = new ArrayList<>();
+
     private ArrayList<Purchase> purchases = new ArrayList<>();
-    private Purchase purchase = new Purchase();
+    private Purchase purchase;
 
 
     private ArrayList<Tray> trays;
-    private ArrayList<Observer> observers;
 
     Automate() {
         Tray tray1 = new Tray();
@@ -22,10 +23,17 @@ public class Automate {
         Tray tray4 = new Tray();
         Tray tray5 = new Tray();
         trays = new ArrayList<>();
-        observers = new ArrayList<>();
         trays.addAll(Arrays.asList(tray1, tray2, tray3, tray4, tray5));
     }
-
+    public void secretButton() {
+        for (ArrayList<Purchase> purchases:
+                report) {
+            for (Purchase purchase:
+                    purchases) {
+                System.out.println(purchase.toString());
+            }
+        }
+    }
 
     public void makeOrder(int numberOfTray, String good, int amount) {
         purchase = new Purchase();
@@ -68,6 +76,9 @@ public class Automate {
     }
 
     public synchronized void getPurchase() {
+
+        if (purchase!=null) {
+
         if (purchase.getInputMoney() < sum) {
             System.out.println("Not enough money for purchase");
         } else {
@@ -75,11 +86,19 @@ public class Automate {
                  purchases) {
 
             purchase.getProcessingTray().getGood(purchase.getGood().getName()).update(purchase.getAmount());
+            purchase.getProcessingTray().Notify();
             }
             System.out.println("Cash back: " + (new DecimalFormat(".00").format(purchase.getInputMoney() - sum)));
             System.out.println("Take your order");
         }
+        report.add(purchases);
+        sum=0;
+        purchases= new ArrayList<>();
         purchase = null;
+        }
+        else {
+            System.out.println("Purchase was annulled");
+        }
 
     }
 
@@ -87,6 +106,7 @@ public class Automate {
         if (purchase!=null){
             purchases= new ArrayList<>();
             purchase = null;
+            sum=0;
             System.out.println("Get your money back");
         }
         else  {
@@ -97,7 +117,7 @@ public class Automate {
     public void getInfo() {
         for (int i = 0; i <= trays.size() - 1; i++) {
             Tray tray = trays.get(i);
-            System.out.printf("Tray: tray%s, Bread: %s, Garlic: %s, Choc: %s\n", i + 1, tray.getBread().getAmount(), tray.getGarlic().getAmount(), tray.getChocolate().getAmount());
+            System.out.printf("Tray: tray%s, Bread: %s, Garlic: %s, Choc: %s, RedLamp: %s\n", i + 1, tray.getBread().getAmount(), tray.getGarlic().getAmount(), tray.getChocolate().getAmount(),tray.isNotInStock);
         }
     }
 
