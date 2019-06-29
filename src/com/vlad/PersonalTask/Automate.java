@@ -58,7 +58,7 @@ public class Automate {
         }
         sum+=purchase.getRequiredMoney();
         purchases.add(purchase);
-        System.out.println("Sum of purchase: " + sum);
+        System.out.println("Sum of purchase: " + new DecimalFormat(".00").format(sum));
     }
 
 

@@ -8,8 +8,9 @@ public class Tray {
 
     private boolean isInStock;
 
-    private Bread bread = new Bread(15,15.30);
+    private Bread bread = new Bread(5,15.30);
     private Chocolate chocolate= new Chocolate(5,30.99);
+
     private Garlic garlic = new Garlic(5,89.50);
 
     public Bread getBread() {
