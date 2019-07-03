@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 public class Automate {
 
+    private double allCash;
+
     private double sum = 0;
 
     private ArrayList<ArrayList<Purchase>> report = new ArrayList<>();
@@ -26,13 +28,19 @@ public class Automate {
         trays.addAll(Arrays.asList(tray1, tray2, tray3, tray4, tray5));
     }
     public void secretButton() {
+            System.out.println("==============================");
         for (ArrayList<Purchase> purchases:
                 report) {
             for (Purchase purchase:
                     purchases) {
                 System.out.println(purchase.toString());
-            }
+
+           }
+            System.out.println("==============================");
+
         }
+        System.out.println("TOTAL CASH: " + this.allCash);
+        allCash=0;
     }
 
     public void makeOrder(int numberOfTray, String good, int amount) {
@@ -84,7 +92,7 @@ public class Automate {
         } else {
             for (Purchase purchase:
                  purchases) {
-
+            this.allCash+=purchase.getRequiredMoney();
             purchase.getProcessingTray().getGood(purchase.getGood().getName()).update(purchase.getAmount());
             purchase.getProcessingTray().Notify();
             }
